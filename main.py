@@ -22,8 +22,8 @@ def main():
         scikit_learn_clf = KNeighborsClassifier(n_neighbors=args.k)
         scikit_learn_clf.fit(X_train, y_train)
         predictions_from_scikit_learn_model = scikit_learn_clf.predict(X_test)
-        print(f'k = {args.k} Accuracy from self-made model{get_accuracy(predictions_from_self_made_clf, y_test)}\n{predictions_from_self_made_clf}\n{y_test}')
-        print(f'k = {args.k} Accuracy from scikit-learn model{get_accuracy(predictions_from_scikit_learn_model, y_test)}\n{predictions_from_scikit_learn_model}\n{y_test}')
+        print(f'Accuracy from self-made with k = {args.k} model{get_accuracy(predictions_from_self_made_clf, y_test)}\n{predictions_from_self_made_clf} Self made model\n{y_test} Test data')
+        print(f'Accuracy from scikit-learn with k = {args.k} model{get_accuracy(predictions_from_scikit_learn_model, y_test)}\n{predictions_from_scikit_learn_model} Scikit learn model\n{y_test} Test data')
 
 
 if __name__ == '__main__':
