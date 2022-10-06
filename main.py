@@ -16,15 +16,14 @@ def main():
     X = df.drop(['tea_or_coffee'], axis=1).values
     y = df.tea_or_coffee.values
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.33, random_state=42)
-    for i in range(10):
-        with KNearestNeighborsClassifier(k=args.k+i) as self_made_clf:
-            self_made_clf.fit(X=X_train, y=y_train)
-            predictions_from_self_made_clf = self_made_clf.predict(X_test)
-            scikit_learn_clf = KNeighborsClassifier(n_neighbors=args.k+i)
-            scikit_learn_clf.fit(X_train, y_train)
-            predictions_from_scikit_learn_model = scikit_learn_clf.predict(X_test)
-            print(f'k = {args.k+i} Accuracy from self-made model{get_accuracy(predictions_from_self_made_clf, y_test)}\n{predictions_from_self_made_clf}\n{y_test}')
-            print(f'k = {args.k+i} Accuracy from scikit-learn model{get_accuracy(predictions_from_scikit_learn_model, y_test)}\n{predictions_from_scikit_learn_model}\n{y_test}')
+    with KNearestNeighborsClassifier(k=args.k) as self_made_clf:
+        self_made_clf.fit(X=X_train, y=y_train)
+        predictions_from_self_made_clf = self_made_clf.predict(X_test)
+        scikit_learn_clf = KNeighborsClassifier(n_neighbors=args.k)
+        scikit_learn_clf.fit(X_train, y_train)
+        predictions_from_scikit_learn_model = scikit_learn_clf.predict(X_test)
+        print(f'k = {args.k} Accuracy from self-made model{get_accuracy(predictions_from_self_made_clf, y_test)}\n{predictions_from_self_made_clf}\n{y_test}')
+        print(f'k = {args.k} Accuracy from scikit-learn model{get_accuracy(predictions_from_scikit_learn_model, y_test)}\n{predictions_from_scikit_learn_model}\n{y_test}')
 
 
 if __name__ == '__main__':
