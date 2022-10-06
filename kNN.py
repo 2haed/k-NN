@@ -13,7 +13,7 @@ def normalize_data(df: pd.DataFrame) -> pd.DataFrame:
 
 
 def get_accuracy(predictions: list, y_test) -> str:
-    return f' equals: {np.sum(predictions == y_test)/len(y_test)}'
+    return f' equals: {np.sum(predictions == y_test)/len(y_test)*100}%'
 
 
 def e_distance(x1, x2):
