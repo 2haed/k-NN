@@ -5,9 +5,6 @@ from sklearn.neighbors import KNeighborsClassifier
 from collections import Counter
 
 
-
-
-
 def normalize_data(df: pd.DataFrame) -> pd.DataFrame:
     df = df.drop(['Отметка времени'], axis=1).apply(lambda x: pd.factorize(x)[0]).rename(
         columns={'Пол': 'sex', 'Высшая школа': 'high_school', 'Округ': 'region', 'Спорт': 'sport',
