@@ -27,5 +27,5 @@ def main():
             print(f'k = {args.k+i} Accuracy from scikit-learn model{get_accuracy(predictions_from_scikit_learn_model, y_test)}\n{predictions_from_scikit_learn_model}\n{y_test}')
 
 
-if __name__=='__main__':
+if __name__ == '__main__':
     main()
