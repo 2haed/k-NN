@@ -3,6 +3,12 @@ import pandas as pd
 from collections import Counter
 
 
+def coffee_tea_replacer(arr: np.array) -> list:
+    arr = list(map(int, arr))
+    arr = " ".join(list(map(str, arr))).replace('0', 'Чай').replace('1', 'Кофе').split()
+    return arr
+
+
 def normalize_data(df: pd.DataFrame) -> pd.DataFrame:
     df = df.drop(['Отметка времени'], axis=1).apply(lambda x: pd.factorize(x)[0]).rename(
         columns={'Пол': 'sex', 'Высшая школа': 'high_school', 'Округ': 'region', 'Спорт': 'sport',
@@ -12,8 +18,8 @@ def normalize_data(df: pd.DataFrame) -> pd.DataFrame:
     return df
 
 
-def get_accuracy(predictions: list, y_test) -> str:
-    return f' equals: {np.sum(predictions == y_test)/len(y_test)*100}%'
+def get_accuracy(predictions: list, y_test) -> int:
+    return np.sum(predictions == y_test) / len(y_test)
 
 
 def e_distance(x1, x2):
@@ -38,6 +44,9 @@ class KNearestNeighborsClassifier:
         k_nearest_labels = [self.y_train[i] for i in k_index]
         most_common = Counter(k_nearest_labels).most_common(1)
         return most_common[0][0]
+
+    def single_predict(self, row: pd.Series) -> str:
+        return "Чай" if str(int(self.predicting(row).tolist())) == 0 else "Кофе"
 
     def __enter__(self):
         return self
