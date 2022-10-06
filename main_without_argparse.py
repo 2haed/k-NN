@@ -1,5 +1,3 @@
-import sys
-
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.neighbors import KNeighborsClassifier
@@ -24,17 +22,24 @@ def main():
         self_made_accuracy = get_accuracy(predictions_from_self_made_clf, y_test)
         scikit_learn_accuracy = get_accuracy(predictions_from_scikit_learn_model, y_test)
         while True:
-            chooser = int(input("Одиночное предсказание - 1 / Множественное предсказание - 2: "))
+            chooser = int(input("Одиночное предсказание - 1 / Множественное предсказание - 2 / Для выхода - -1: "))
             if chooser == 1:
                 print(df_to_show)
                 num = int(input("Введите i-ый элемент дата сета: "))
                 print(self_made_clf.single_predict(X[num]))
             elif chooser == 2:
-                print(f'Точность самописной модели, где k = {k} = {self_made_accuracy*100}%\n{coffee_tea_replacer(predictions_from_self_made_clf)} Self made model\n{coffee_tea_replacer(y_test)} Test data')
-                print(f'Точность компьютерной модели, где k = {k} = {scikit_learn_accuracy*100}%\n{coffee_tea_replacer(predictions_from_scikit_learn_model)} Scikit learn model\n{coffee_tea_replacer(y_test)} Test data')
+                print(
+                    f'Точность самописной модели, где k = {k} = {self_made_accuracy * 100}%'
+                    f'\n{coffee_tea_replacer(predictions_from_self_made_clf)} '
+                    f'Self made model\n{coffee_tea_replacer(y_test)} Test data')
+                print(
+                    f'Точность компьютерной модели, где k = {k} = {scikit_learn_accuracy * 100}'
+                    f'%\n{coffee_tea_replacer(predictions_from_scikit_learn_model)} '
+                    f'Scikit learn model\n{coffee_tea_replacer(y_test)} Test data')
             elif chooser == -1:
                 print("До свидания!")
                 break
+
 
 if __name__ == '__main__':
     main()
