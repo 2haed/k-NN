@@ -26,10 +26,12 @@ def e_distance(x1, x2):
 
 
 class KNearestNeighborsClassifier:
-    def __init__(self, k, X, y):
+    def __init__(self, k):
+        self.k = k
+
+    def fit(self, X, y):
         self.X_train = X
         self.y_train = y
-        self.k = k
 
     def predict(self, X):
         predicted_labels = [self.predicting(x) for x in X]
@@ -41,3 +43,9 @@ class KNearestNeighborsClassifier:
         k_nearest_labels = [self.y_train[i] for i in k_index]
         most_common = Counter(k_nearest_labels).most_common(1)
         return most_common[0][0]
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        pass
