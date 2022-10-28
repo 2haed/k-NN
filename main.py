@@ -6,6 +6,7 @@ import argparse
 
 
 def main():
+
     parser = argparse.ArgumentParser(description='Videos to images')
     parser.add_argument('--filename', type=str, help='Input filename')
     parser.add_argument('--k', type=int, help='k number of neighbors')
@@ -38,6 +39,7 @@ def main():
                 f'Точность компьютерной модели, где k = {args.k} = {scikit_learn_accuracy * 100}'
                 f'%\n{coffee_tea_replacer(predictions_from_scikit_learn_model)} '
                 f'Scikit learn model\n{coffee_tea_replacer(y_test)} Test data')
+
 
 if __name__ == '__main__':
     main()

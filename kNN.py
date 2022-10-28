@@ -28,6 +28,8 @@ def e_distance(x1, x2):
 
 class KNearestNeighborsClassifier:
     def __init__(self, k):
+        self.X_train = None
+        self.y_train = None
         self.k = k
 
     def fit(self, X, y):
